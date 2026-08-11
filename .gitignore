@@ -1,0 +1,50 @@
+﻿# Data - never commit datasets
+data/
+house-prices-advanced-regression-techniques/
+
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Model artifacts (large files)
+*.joblib
+*.pkl
+*.pickle
+
+# Keep the small final model
+!models/model_v*.joblib
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Environment variables
+.env
+*.env
+
+# Build / dist
+dist/
+build/
+*.egg-info/
+
+# Reports (generated figures are committed; raw outputs are not)
+reports/figures/*.png
+!reports/figures/.gitkeep
+
+# Logs
+*.log
