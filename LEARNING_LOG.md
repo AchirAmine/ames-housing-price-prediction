@@ -17,3 +17,9 @@
 **What I did:** Built a modular ColumnTransformer encapsulating median imputation for 36 numeric features alongside dedicated 'None' constant imputation for 15 absent-categorical features and mode imputation for 28 general categoricals, integrated into an end-to-end Pipeline validated by automated unit tests.
 
 **What I learned:** Encapsulating feature transformations strictly inside the Pipeline ensures that imputers and encoders are fitted exclusively on training folds during cross-validation, completely eliminating data leakage. Setting handle_unknown="ignore" on OneHotEncoder ensures robust inference when unseen categories arrive at serving time.
+
+## S4 — 5-Fold Cross-Validation Model Comparison (2026-08-19)
+
+**What I did:** Benchmarked 8 candidate models (Median Baseline, OLS, Lasso, ElasticNet, Random Forest, HistGradientBoosting, LightGBM, Ridge) across 5 folds measuring both Log RMSE (optimization metric) and Dollar MAE (business metric).
+
+**What I learned:** Ridge Regression with L2 regularization achieved the lowest prediction error (Log RMSE: 0.1197, MAE: $14,219), reducing dollar error by 74.4% compared to the baseline ($55,631) and outperforming complex tree ensembles. Unregularized OLS exhibited higher variance (Std: 0.0133 vs Ridge's 0.0092), proving the necessity of L2 shrinkage under high-dimensional one-hot encodings.
