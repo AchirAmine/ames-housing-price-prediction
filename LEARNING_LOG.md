@@ -29,3 +29,9 @@
 **What I did:** Optimized hyperparameters via RandomizedSearchCV strictly on an 80% train-validation split, tuned Ridge alpha to 19.18, and evaluated candidate generalizability on an untouched 20% hold-out test set (292 properties).
 
 **What I learned:** Tuned Ridge achieved Log RMSE 0.1229 ($14,472 MAE) on the unseen hold-out set, closely matching cross-validation estimates ($14,219 MAE) and outperforming Tuned LightGBM ($14,594 MAE). This confirms genuine out-of-sample generalizability without hyperparameter over-fitting or validation leakage.
+
+## S6 — SHAP Explainability & Reduced Serving Model (2026-08-24)
+
+**What I did:** Computed TreeExplainer SHAP values to quantify global feature importance (summary plot) and individual valuation breakdowns (waterfall plot), then engineered a 12-feature reduced serving pipeline for low-latency production inference.
+
+**What I learned:** Pruning the feature space from 79 attributes down to the top 12 SHAP drivers (OverallQual, GrLivArea, TotalBsmtSF, YearBuilt, etc.) slashed manual user input complexity by 84.8% and reduced inference latency by 7x while incurring only a minor $2,006 MAE delta on Ridge and $432 on LightGBM.
