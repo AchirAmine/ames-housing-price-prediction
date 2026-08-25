@@ -4,10 +4,12 @@ from sklearn.linear_model import LinearRegression, Ridge, Lasso, ElasticNet
 from sklearn.ensemble import RandomForestRegressor, HistGradientBoostingRegressor
 from lightgbm import LGBMRegressor
 
-from src.ames.config import RANDOM_SEED
+from src.ames.config import RANDOM_SEED, MODELS_DIR
 from src.ames.data import load_raw_data, remove_known_outliers, get_feature_target_split
 from src.ames.pipeline import build_preprocessor, create_full_pipeline
 from src.ames.evaluate import evaluate_pipeline_cv
+from src.ames.explain import TOP_SERVING_FEATURES
+import joblib
 
 def get_candidate_models():
     return {
@@ -45,9 +47,25 @@ def run_model_comparison(drop_outliers: bool = True) -> pd.DataFrame:
     results_df = pd.DataFrame(records).sort_values(by="Log RMSE (Mean)")
     return results_df
 
+def train_and_save_final_model(output_path = MODELS_DIR / "model_v1.joblib"):
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    df = remove_known_outliers(load_raw_data())
+    X, y = get_feature_target_split(df)
+    X_reduced = X[TOP_SERVING_FEATURES].copy()
+
+    preprocessor = build_preprocessor(X_reduced)
+    pipeline = create_full_pipeline(Ridge(alpha=19.18, random_state=RANDOM_SEED), preprocessor)
+    pipeline.fit(X_reduced, y)
+
+    joblib.dump(pipeline, output_path)
+    return pipeline
+
 if __name__ == "__main__":
     results = run_model_comparison(drop_outliers=True)
     pd.set_option("display.max_columns", None)
     pd.set_option("display.width", 1000)
     print("\n=== Ames Housing 5-Fold Cross-Validation Comparison ===")
     print(results.to_string(index=False))
+    train_and_save_final_model()
+    print("\nFinal serving model trained and saved to models/model_v1.joblib")
+

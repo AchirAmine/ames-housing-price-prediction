@@ -35,3 +35,9 @@
 **What I did:** Computed TreeExplainer SHAP values to quantify global feature importance (summary plot) and individual valuation breakdowns (waterfall plot), then engineered a 12-feature reduced serving pipeline for low-latency production inference.
 
 **What I learned:** Pruning the feature space from 79 attributes down to the top 12 SHAP drivers (OverallQual, GrLivArea, TotalBsmtSF, YearBuilt, etc.) slashed manual user input complexity by 84.8% and reduced inference latency by 7x while incurring only a minor $2,006 MAE delta on Ridge and $432 on LightGBM.
+
+## S7 — Unified Model Artifact & Inference Engine (2026-08-25)
+
+**What I did:** Serialized the complete 12-feature preprocessing pipeline and fitted Ridge weights into a compact joblib artifact (models/model_v1.joblib, 4.2 KB), developed an autonomous predict module with automatic expm1 inversion, and wrote 4 automated unit tests covering single/batch inferences and error boundaries.
+
+**What I learned:** Bundling preprocessing transformers and model weights into a single serialized pipeline eliminates code duplication between training and production environments, guaranteeing that input features undergo identical transformations at inference time without drift.
