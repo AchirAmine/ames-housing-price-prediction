@@ -41,3 +41,9 @@
 **What I did:** Serialized the complete 12-feature preprocessing pipeline and fitted Ridge weights into a compact joblib artifact (models/model_v1.joblib, 4.2 KB), developed an autonomous predict module with automatic expm1 inversion, and wrote 4 automated unit tests covering single/batch inferences and error boundaries.
 
 **What I learned:** Bundling preprocessing transformers and model weights into a single serialized pipeline eliminates code duplication between training and production environments, guaranteeing that input features undergo identical transformations at inference time without drift.
+
+## S8 — Production REST API with Pydantic Validation (2026-08-26)
+
+**What I did:** Implemented high-performance GET /health and POST /predict REST endpoints using FastAPI, enforced schema boundaries and categorical Literal validation with Pydantic, and verified valid inputs and 422 error boundaries using TestClient.
+
+**What I learned:** Pydantic models enforce domain boundaries (such as 1 <= OverallQual <= 10 and allowed categorical literals) at the gateway layer, preventing corrupt or out-of-distribution inputs from ever reaching the model pipeline and returning clear 422 HTTP validation errors automatically.
