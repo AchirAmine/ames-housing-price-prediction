@@ -47,3 +47,9 @@
 **What I did:** Implemented high-performance GET /health and POST /predict REST endpoints using FastAPI, enforced schema boundaries and categorical Literal validation with Pydantic, and verified valid inputs and 422 error boundaries using TestClient.
 
 **What I learned:** Pydantic models enforce domain boundaries (such as 1 <= OverallQual <= 10 and allowed categorical literals) at the gateway layer, preventing corrupt or out-of-distribution inputs from ever reaching the model pipeline and returning clear 422 HTTP validation errors automatically.
+
+## S9 — Production Docker Containerization (2026-08-27)
+
+**What I did:** Authored an optimized Dockerfile on python:3.11-slim leveraging non-root user security (appuser, UID 1000), isolated build context via .dockerignore, and documented container lifecycle execution.
+
+**What I learned:** Decoupling dependency installation from application code copying allows Docker to leverage layer caching effectively, while running under a dedicated non-root user prevents container breakout vulnerabilities in shared cloud environments.

@@ -1,0 +1,17 @@
+.git
+.gitignore
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+.coverage
+htmlcov
+data/
+notebooks/
+reports/
+tests/
+.env
+README.md
+LEARNING_LOG.md
