@@ -59,3 +59,9 @@
 **What I did:** Developed an interactive, user-friendly Streamlit web application providing a two-column reduced feature input form, real-time valuation metrics, dynamic range intervals (±10%), and automated property market tier badges.
 
 **What I learned:** Providing a clean graphical interface bridges technical ML models with non-technical stakeholders, enabling real-time what-if scenario testing and demonstrating practical business utility without requiring manual API calls.
+
+## S11 — Documentation, Production Polish & Career Deliverables (2026-08-28)
+
+**What I did:** Authored a comprehensive, production-grade README documenting real benchmarks, empirical 8-model comparisons, and deployment procedures, supported by quantified CV achievement bullets.
+
+**What I learned:** High-impact ML engineering is defined not merely by modeling code, but by clear architectural documentation, reproducible benchmarking against non-trivial baselines, explicit trade-off justification between latency and accuracy, and frictionless deployment paths.
