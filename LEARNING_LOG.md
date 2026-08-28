@@ -53,3 +53,9 @@
 **What I did:** Authored an optimized Dockerfile on python:3.11-slim leveraging non-root user security (appuser, UID 1000), isolated build context via .dockerignore, and documented container lifecycle execution.
 
 **What I learned:** Decoupling dependency installation from application code copying allows Docker to leverage layer caching effectively, while running under a dedicated non-root user prevents container breakout vulnerabilities in shared cloud environments.
+
+## S10 — Interactive Streamlit Dashboard (2026-08-28)
+
+**What I did:** Developed an interactive, user-friendly Streamlit web application providing a two-column reduced feature input form, real-time valuation metrics, dynamic range intervals (±10%), and automated property market tier badges.
+
+**What I learned:** Providing a clean graphical interface bridges technical ML models with non-technical stakeholders, enabling real-time what-if scenario testing and demonstrating practical business utility without requiring manual API calls.
